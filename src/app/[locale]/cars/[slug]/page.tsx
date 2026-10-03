@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { FaWhatsapp } from "react-icons/fa";
 import { VehicleExperienceTabs } from "@/components/VehicleExperienceTabs";
 import {
   locales,
@@ -64,9 +66,9 @@ export default async function VehiclePage({ params }: PageProps) {
           gallery: "Galerie",
           exterior: "360° Außenansicht",
           interior: "360° Innenraum",
-          testDrive: "Probefahrt anfragen",
+          testDrive: "Probefahrt buchen",
           financing: "Finanzierung anfragen",
-          whatsapp: "WhatsApp Anfrage",
+          whatsapp: "Schreib uns",
           description:
             "Entdecke dieses Fahrzeug im Detail und erlebe es digital, bevor du den Showroom besuchst.",
         }
@@ -82,9 +84,9 @@ export default async function VehiclePage({ params }: PageProps) {
           gallery: "Gallery",
           exterior: "360° Exterior",
           interior: "360° Interior",
-          testDrive: "Request Test Drive",
+          testDrive: "Book a Test Drive",
           financing: "Ask About Financing",
-          whatsapp: "WhatsApp Inquiry",
+          whatsapp: "Send us",
           description:
             "Explore this vehicle in detail and experience it digitally before visiting the showroom.",
         };
@@ -110,17 +112,33 @@ export default async function VehiclePage({ params }: PageProps) {
               <div className="vehiclePrice">{vehicle.price}</div>
 
               <div className="vehicleActions">
-                <button className="primaryButton" type="button">
-                  {labels.whatsapp}
-                </button>
+                <a
+  className="vehicleWhatsappButton"
+  href={`https://wa.me/490000000000?text=${encodeURIComponent(
+    locale === "de"
+      ? `Hallo AutoShowroom, ich interessiere mich für den ${vehicle.name} (${vehicle.price}).`
+      : `Hello AutoShowroom, I am interested in the ${vehicle.name} (${vehicle.price}).`
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaWhatsapp className="vehicleWhatsappIcon" aria-hidden="true" />
+  <span>{labels.whatsapp}</span>
+</a>
 
-                <button className="secondaryDarkButton" type="button">
-                  {labels.testDrive}
-                </button>
+                <Link
+                    className="secondaryDarkButton"
+                    href={`/${locale}/test-drive?car=${vehicle.slug}`}
+                  >
+                    {labels.testDrive}
+                  </Link>
 
-                <button className="outlineButton" type="button">
-                  {labels.financing}
-                </button>
+                <Link
+                    className="outlineButton"
+                    href={`/${locale}/financing?car=${vehicle.slug}`}
+                  >
+                    {labels.financing}
+                  </Link>
               </div>
             </div>
 
@@ -180,6 +198,8 @@ export default async function VehiclePage({ params }: PageProps) {
           />
         </div>
       </section>
+
+      <Footer locale={locale} />
     </main>
   );
 }

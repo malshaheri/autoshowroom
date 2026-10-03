@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { HomeShowroomViewer } from "@/components/HomeShowroomViewer";
+import { vehicles } from "@/data/vehicles";
 import { notFound } from "next/navigation";
 import {
   locales,
@@ -49,12 +52,24 @@ export default async function Home({ params }: PageProps) {
 
   const locale = rawLocale as Locale;
   const t = translations[locale];
+  const showcaseVehicle = vehicles[0];
 
   return (
     <main>
       <Header locale={locale} labels={t.nav} />
 
       <section className="hero">
+        <video
+          className="heroVideo"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src="/videos/hero-car.mp4" type="video/mp4" />
+        </video>
+
         <div className="heroOverlay" />
 
         <div className="container heroContent">
@@ -149,42 +164,18 @@ export default async function Home({ params }: PageProps) {
 
             <p>{t.virtual.description}</p>
 
-            <a className="lightButton" href="#">
+            <Link className="lightButton" href={`/${locale}/cars/mercedes-benz-c-class`}>
               {t.virtual.button} →
-            </a>
+            </Link>
           </div>
 
-          <div className="viewerCard">
-            <img
-              src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1400&q=90"
-              alt="360 vehicle preview"
+          <HomeShowroomViewer
+              images={showcaseVehicle.exterior360 ?? [showcaseVehicle.image]}
+              interiorPanorama={showcaseVehicle.interiorPanorama}
+              locale={locale}
             />
-
-            <button className="viewerArrow leftArrow" type="button">
-              ‹
-            </button>
-
-            <button className="viewerArrow rightArrow" type="button">
-              ›
-            </button>
-
-            <div className="viewerBadge">
-              <strong>360°</strong>
-              <span>{t.virtual.drag}</span>
-            </div>
-
-            <div className="viewerTabs">
-              <button className="active" type="button">
-                {locale === "de" ? "Außenansicht" : "Exterior"}
-              </button>
-
-              <button type="button">
-                {locale === "de" ? "Innenraum" : "Interior"}
-              </button>
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       <section className="section" id="services">
         <div className="container">
@@ -233,6 +224,8 @@ export default async function Home({ params }: PageProps) {
           </a>
         </div>
       </section>
+
+      <Footer locale={locale} />
     </main>
   );
 }

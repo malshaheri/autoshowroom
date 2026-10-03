@@ -8,6 +8,7 @@ import type { Locale } from "@/i18n/translations";
 type HeaderProps = {
   variant?: "default" | "light";
   locale: Locale;
+  queryString?: string;
   labels: {
     cars: string;
     showroom: string;
@@ -17,33 +18,57 @@ type HeaderProps = {
   };
 };
 
-export function Header({ locale, labels, variant = "default" }: HeaderProps) {
+export function Header({
+  locale,
+  labels,
+  variant = "default",
+  queryString = "",
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isServicesPage = pathname.includes("/services");
+  const isContactPage = pathname.includes("/contact");
 
   const localePath = (targetLocale: Locale) => {
     const segments = pathname.split("/");
 
     if (segments[1] === "de" || segments[1] === "en") {
       segments[1] = targetLocale;
-      return segments.join("/") || `/${targetLocale}`;
+      return `${segments.join("/") || `/${targetLocale}`}${queryString}`;
     }
 
-    return `/${targetLocale}`;
+    return `/${targetLocale}${queryString}`;
   };
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <header className={`siteHeader ${variant === "light" ? "lightHeader" : ""}`}>
+    <header
+      className={`siteHeader ${
+        variant === "light" ? "lightHeader" : ""
+      }`}
+    >
       <div className="container headerInner">
         <Link className="brand" href={`/${locale}`}>
           Auto<span>Showroom</span>
         </Link>
 
         <nav className="mainNav">
-          <a href="#inventory">{labels.cars}</a>
-          <a href="#virtual-showroom">{labels.showroom}</a>
-          <a href="#services">{labels.services}</a>
-          <a href="#contact">{labels.contact}</a>
+          <Link href={`/${locale}#inventory`}>
+            {labels.cars}
+          </Link>
+
+          <Link href={`/${locale}#virtual-showroom`}>
+            {labels.showroom}
+          </Link>
+
+          <Link className={isServicesPage ? "active" : ""} href={`/${locale}/services`}>
+            {labels.services}
+          </Link>
+
+          <Link className={isContactPage ? "active" : ""} href={`/${locale}/contact`}>
+            {labels.contact}
+          </Link>
         </nav>
 
         <div className="headerActions">
@@ -65,9 +90,12 @@ export function Header({ locale, labels, variant = "default" }: HeaderProps) {
             </Link>
           </div>
 
-          <a className="headerButton" href="#inventory">
+          <Link
+            className="headerButton"
+            href={`/${locale}#inventory`}
+          >
             {labels.viewCars}
-          </a>
+          </Link>
 
           <button
             className={`menuButton ${isOpen ? "open" : ""}`}
@@ -85,27 +113,39 @@ export function Header({ locale, labels, variant = "default" }: HeaderProps) {
 
       <div className={`mobileMenu ${isOpen ? "open" : ""}`}>
         <div className="container mobileMenuInner">
-          <a href="#inventory" onClick={() => setIsOpen(false)}>
+          <Link
+            href={`/${locale}#inventory`}
+            onClick={closeMenu}
+          >
             {labels.cars}
-          </a>
+          </Link>
 
-          <a href="#virtual-showroom" onClick={() => setIsOpen(false)}>
+          <Link
+            href={`/${locale}#virtual-showroom`}
+            onClick={closeMenu}
+          >
             {labels.showroom}
-          </a>
+          </Link>
 
-          <a href="#services" onClick={() => setIsOpen(false)}>
+          <Link
+            href={`/${locale}/services`}
+            onClick={closeMenu}
+          >
             {labels.services}
-          </a>
+          </Link>
 
-          <a href="#contact" onClick={() => setIsOpen(false)}>
+          <Link
+            href={`/${locale}/contact`}
+            onClick={closeMenu}
+          >
             {labels.contact}
-          </a>
+          </Link>
 
           <div className="languageSwitch mobileLanguage">
             <Link
               className={locale === "de" ? "active" : ""}
               href={localePath("de")}
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
             >
               DE
             </Link>
@@ -115,7 +155,7 @@ export function Header({ locale, labels, variant = "default" }: HeaderProps) {
             <Link
               className={locale === "en" ? "active" : ""}
               href={localePath("en")}
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
             >
               EN
             </Link>

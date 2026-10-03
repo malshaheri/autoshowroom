@@ -26,7 +26,6 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -980,13 +979,9 @@ img {
     inset: 0 0 auto 0;
     z-index: 60;
     padding-top: 72px;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(8, 17, 32, 0.92),
-        rgba(8, 17, 32, 0.78)
-      );
-    backdrop-filter: blur(22px);
+    background: rgba(8, 17, 32, 0.15);
+    backdrop-filter: blur(11px) saturate(120%);
+    -webkit-backdrop-filter: blur(11px) saturate(120%);
     border: 0;
     opacity: 0;
     visibility: hidden;
@@ -1014,8 +1009,10 @@ img {
     padding: 16px 18px;
     border: 1px solid transparent;
     border-radius: 14px;
+    background: transparent;
     color: rgba(255, 255, 255, 0.88);
-    font-weight: 800;
+    font-weight: 650;
+    letter-spacing: -0.015em;
     transition:
       background 0.2s ease,
       color 0.2s ease,
@@ -1026,10 +1023,10 @@ img {
   .mobileMenuInner > a:hover,
   .mobileMenuInner > a:focus,
   .mobileMenuInner > a:active {
-    background: rgba(75, 140, 255, 0.16);
-    border-color: rgba(75, 140, 255, 0.28);
+    background: rgba(55, 125, 255, 0.18);
+    border-color: rgba(110, 165, 255, 0.30);
     color: #ffffff;
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
 
   .mobileMenuInner > a::after {
@@ -1070,46 +1067,7 @@ img {
   }
 }
 
-@media (max-width: 820px) {
-  .mobileMenu {
-    background: rgba(8, 17, 32, 0.42);
-    backdrop-filter: blur(18px) saturate(130%);
-    -webkit-backdrop-filter: blur(18px) saturate(130%);
-  }
 
-  .mobileMenuInner > a {
-    background: rgba(255, 255, 255, 0.02);
-  }
-
-  .mobileMenuInner > a:hover,
-  .mobileMenuInner > a:focus,
-  .mobileMenuInner > a:active {
-    background: rgba(75, 140, 255, 0.18);
-    border-color: rgba(110, 165, 255, 0.3);
-  }
-}
-
-@media (max-width: 820px) {
-  .mobileMenu {
-    background: rgba(8, 17, 32, 0.24);
-    backdrop-filter: blur(14px) saturate(125%);
-    -webkit-backdrop-filter: blur(14px) saturate(125%);
-  }
-
-  .mobileMenuInner > a {
-    background: transparent;
-    border-color: transparent;
-  }
-
-  .mobileMenuInner > a:hover,
-  .mobileMenuInner > a:focus,
-  .mobileMenuInner > a:active {
-    background: rgba(75, 140, 255, 0.17);
-    border-color: rgba(110, 165, 255, 0.28);
-    color: #ffffff;
-    transform: translateX(6px);
-  }
-}
 
 /* Premium typography */
 
@@ -1149,27 +1107,6 @@ body {
   font-weight: 650;
 }
 
-/* Lighter glass mobile menu */
-
-@media (max-width: 820px) {
-  .mobileMenu {
-    background: rgba(8, 17, 32, 0.15);
-    backdrop-filter: blur(11px) saturate(120%);
-    -webkit-backdrop-filter: blur(11px) saturate(120%);
-  }
-
-  .mobileMenuInner > a {
-    font-weight: 650;
-    letter-spacing: -0.015em;
-  }
-
-  .mobileMenuInner > a:hover,
-  .mobileMenuInner > a:focus,
-  .mobileMenuInner > a:active {
-    background: rgba(55, 125, 255, 0.18);
-    border-color: rgba(110, 165, 255, 0.30);
-  }
-}
 
 /* Font system */
 
@@ -1572,9 +1509,10 @@ body {
   width: 100%;
   height: 520px;
   overflow: hidden;
+  z-index: 2;
   cursor: grab;
   user-select: none;
-  touch-action: pan-y;
+  touch-action: none;
   background: #0b1425;
 }
 
@@ -1587,6 +1525,7 @@ body {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+  user-select: none;
 }
 
 .vehicle360Hint {
@@ -1631,22 +1570,6 @@ body {
 
 .experienceViewer::after {
   pointer-events: none;
-}
-
-.vehicle360Viewer {
-  position: relative;
-  z-index: 2;
-  cursor: grab;
-  touch-action: none;
-}
-
-.vehicle360Viewer:active {
-  cursor: grabbing;
-}
-
-.vehicle360Viewer img {
-  pointer-events: none;
-  user-select: none;
 }
 
 .interior360Viewer {
@@ -1921,7 +1844,1602 @@ body {
   font-weight: 700;
 }
 
-.interior360Viewer {
+/* Services page */
+
+.servicesPage {
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+.servicesHero {
+  padding: 110px 0 70px;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(43, 108, 255, 0.1),
+      transparent 32%
+    ),
+    #f6f8fb;
+}
+
+.servicesHeroInner {
+  max-width: 820px;
+}
+
+.servicesHero h1 {
+  max-width: 760px;
+  margin: 14px 0 22px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.servicesHero p {
+  max-width: 680px;
+  margin: 0;
+  color: #667085;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.servicesListSection {
+  padding: 25px 0 100px;
+}
+
+.servicesPageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.servicesPageCard {
+  position: relative;
+  min-height: 270px;
+  padding: 34px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.servicesPageCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(37, 99, 235, 0.22);
+  box-shadow: 0 24px 55px rgba(15, 23, 42, 0.09);
+}
+
+.serviceNumber {
+  display: inline-flex;
+  margin-bottom: 54px;
+  color: #2563eb;
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.servicesPageCard h2 {
+  margin: 0 0 13px;
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  letter-spacing: -0.035em;
+}
+
+.servicesPageCard p {
+  max-width: 510px;
+  margin: 0;
+  color: #667085;
+  line-height: 1.75;
+}
+
+.servicesPageCard:last-child {
+  grid-column: span 2;
+}
+
+.servicesPageCta {
+  padding: 0 0 100px;
+}
+
+.servicesPageCtaInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 48px;
+  border-radius: 32px;
+  background: #0b1425;
+  color: #fff;
+}
+
+.servicesPageCtaInner h2 {
+  max-width: 640px;
+  margin: 10px 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+@media (max-width: 760px) {
+  .servicesHero {
+    padding: 82px 0 50px;
+  }
+
+  .servicesPageGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .servicesPageCard,
+  .servicesPageCard:last-child {
+    grid-column: auto;
+  }
+
+  .servicesPageCard {
+    min-height: auto;
+    padding: 28px;
+  }
+
+  .serviceNumber {
+    margin-bottom: 38px;
+  }
+
+  .servicesPageCtaInner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 32px 26px;
+  }
+}
+
+.homeInteractiveViewer {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.home360Image {
   width: 100%;
-  height: 520px;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.homeInteriorViewer {
+  width: 100%;
+  height: 100%;
+}
+
+.homeInteriorViewer .interior360Viewer {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  border-radius: 0;
+}
+
+.mainNav a.active {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.mobileMenu a.active {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+#services .sectionHeading {
+  margin-bottom: 38px;
+}
+
+#services .sectionHeading h2 {
+  margin-bottom: 0;
+}
+
+/* Footer */
+
+.siteFooter {
+  background: #081221;
+  color: #fff;
+  padding: 72px 0 28px;
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  padding-bottom: 54px;
+}
+
+.footerBrand {
+  max-width: 440px;
+}
+
+.footerLogo {
+  color: #fff;
+}
+
+.footerBrand p {
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.75;
+}
+
+.footerLinks {
+  display: flex;
+  align-items: flex-start;
+  gap: 34px;
+}
+
+.footerLinks a {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLinks a:hover {
+  color: #fff;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+.footerBottom strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .footerTop {
+    flex-direction: column;
+    gap: 38px;
+  }
+
+  .footerLinks {
+    flex-wrap: wrap;
+    gap: 18px 28px;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.simpleFooter {
+  padding: 24px 0;
+  background: #081221;
+}
+
+.simpleFooterInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+}
+
+.simpleFooterInner strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .simpleFooterInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Contact page */
+
+.contactPage {
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+.contactHero {
+  padding: 95px 0 100px;
+}
+
+.contactHeroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr);
+  gap: 70px;
+  align-items: start;
+}
+
+.contactIntro h1 {
+  max-width: 720px;
+  margin: 14px 0 22px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.contactIntro > p {
+  max-width: 650px;
+  margin: 0;
+  color: #667085;
+  font-size: 1.06rem;
+  line-height: 1.8;
+}
+
+.contactInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.contactInfoCard {
+  padding: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  background: #fff;
+}
+
+.contactInfoCard span {
+  display: block;
+  margin-bottom: 8px;
+  color: #667085;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.contactInfoCard strong {
+  color: #0f172a;
+  font-size: 0.98rem;
+}
+
+.contactFormCard {
+  padding: 34px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.contactFormCard h2 {
+  margin: 0 0 26px;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: -0.035em;
+}
+
+.contactForm {
+  display: grid;
+  gap: 18px;
+}
+
+.formGroup {
+  display: grid;
+  gap: 8px;
+}
+
+.formGroup label {
+  color: #344054;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 14px;
+  background: #fff;
+  color: #101828;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.contactSubmit {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #22c55e;
+}
+
+.contactFormNote {
+  margin: 0;
+  color: #98a2b3;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .contactHeroGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contactHero {
+    padding: 72px 0 70px;
+  }
+
+  .contactInfoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contactFormCard {
+    padding: 26px 20px;
+  }
+}
+
+/* Demo map */
+
+.demoMapSection {
+  padding: 0 0 100px;
+}
+
+.demoMapCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  overflow: hidden;
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+}
+
+.demoMapVisual {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #e9eef5 0%, #f7f9fc 100%);
+}
+
+.demoMapGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  background-image:
+    linear-gradient(rgba(95, 114, 137, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 114, 137, 0.14) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.demoMapRoad {
+  position: absolute;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.05),
+    0 6px 14px rgba(15, 23, 42, 0.05);
+}
+
+.roadOne {
+  width: 115%;
+  top: 36%;
+  left: -8%;
+  transform: rotate(-9deg);
+}
+
+.roadTwo {
+  width: 95%;
+  top: 61%;
+  left: 5%;
+  transform: rotate(13deg);
+}
+
+.roadThree {
+  width: 72%;
+  top: 14%;
+  left: 20%;
+  transform: rotate(39deg);
+}
+
+.demoMapPin {
+  position: absolute;
+  left: 55%;
+  top: 48%;
+  width: 52px;
+  height: 52px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  border-radius: 50% 50% 50% 8px;
+  background: #2563eb;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+}
+
+.demoMapPin span {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.demoMapCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 46px;
+}
+
+.demoMapCopy h2 {
+  margin: 12px 0 16px;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.demoMapCopy p {
+  margin: 0;
+  color: #667085;
+  line-height: 1.75;
+}
+
+.demoMapBadge {
+  align-self: flex-start;
+  margin-top: 24px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+@media (max-width: 850px) {
+  .demoMapCard {
+    grid-template-columns: 1fr;
+  }
+
+  .demoMapVisual {
+    min-height: 330px;
+  }
+
+  .demoMapCopy {
+    padding: 32px 26px;
+  }
+}
+
+
+
+.whatsappIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.whatsappLogo {
+  color: #16a34a;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+
+
+.contactSubmit:hover {
+  background: #1ebe5d;
+  border-color: #1ebe5d;
+}
+
+
+
+
+
+.contactSubmit:hover {
+  background: #f4fff8;
+  border-color: #20c85a;
+  color: #20c85a;
+  transform: translateY(-1px);
+}
+
+
+
+.contactSubmit:hover 
+
+.contactSocials {
+  margin-top: 32px;
+}
+
+.contactSocialLabel {
+  display: block;
+  margin-bottom: 14px;
+  color: #667085;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.contactSocialLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contactSocialLinks a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 50%;
+  background: #fff;
+  color: #2563eb;
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.contactSocialLinks a:hover {
+  transform: translateY(-2px);
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* =========================================
+   HOME FINAL POLISH
+   ========================================= */
+
+/* Better separation before CTA */
+#services {
+  padding-bottom: 88px;
+}
+
+.ctaSection {
+  margin-top: 0;
+  margin-bottom: 72px;
+}
+
+/* Inventory top link */
+.viewAllLink {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Virtual showroom spacing */
+.virtualCopy .lightButton {
+  margin-top: 24px;
+}
+
+/* Footer readability */
+.simpleFooterInner {
+  line-height: 1.5;
+}
+
+/* ---------- Mobile polish ---------- */
+
+@media (max-width: 760px) {
+
+  /* Hero breathing room */
+  .heroContent {
+    padding-top: 92px;
+    padding-bottom: 46px;
+  }
+
+  /* Inventory heading/link spacing */
+  #inventory .sectionTop {
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  #inventory .viewAllLink {
+    margin-top: 8px;
+  }
+
+  /* More room between 360 copy and viewer */
+  .virtualCopy {
+    margin-bottom: 38px;
+  }
+
+  .virtualCopy .lightButton {
+    margin-top: 22px;
+  }
+
+  /* Services → CTA separation */
+  #services {
+    padding-bottom: 68px;
+  }
+
+  .ctaSection {
+    margin-bottom: 54px;
+  }
+
+  /* CTA button easier to tap */
+  .ctaInner .primaryButton {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Footer */
+  .simpleFooter {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .simpleFooterInner {
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 420px) {
+  .heroContent {
+    padding-top: 88px;
+  }
+
+  .simpleFooterInner {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================
+   VEHICLE DETAIL FINAL POLISH
+   ========================================= */
+
+/* Desktop balance */
+.vehicleHeroCopy h1 {
+  max-width: 620px;
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.vehicleActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vehicleMainImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Specs */
+.vehicleSpecs > div {
+  min-width: 0;
+}
+
+/* Gallery thumbnails: keep scrolling but hide ugly scrollbar */
+.galleryThumbnails {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.galleryThumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Tablet / Mobile ---------- */
+
+@media (max-width: 760px) {
+  .vehiclePage {
+    padding-top: 54px;
+  }
+
+  .vehicleBackLink {
+    margin-bottom: 30px;
+  }
+
+  .vehicleHeroCopy h1 {
+    font-size: clamp(2.6rem, 10vw, 3.7rem);
+    line-height: 1;
+  }
+
+  .vehiclePrice {
+    margin-top: 28px;
+  }
+
+  /* Cleaner action layout: 2 buttons + 1 full width */
+  .vehicleActions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .vehicleActions .primaryButton,
+  .vehicleActions .secondaryDarkButton,
+  .vehicleActions .outlineButton {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .vehicleActions .outlineButton {
+    grid-column: 1 / -1;
+  }
+
+  /* Main vehicle preview */
+  .vehicleMainImage {
+    margin-top: 34px;
+  }
+
+  .vehicleMainImage img {
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  /* More compact specs */
+  .vehicleSpecs {
+    margin-top: 34px;
+  }
+
+  .vehicleSpecs > div {
+    padding: 20px 18px;
+  }
+
+  /* Experience tabs */
+  .experienceTabs {
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .experienceTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experienceTabs button {
+    flex: 0 0 auto;
+    padding: 11px 17px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  /* Gallery */
+  .premiumGallery {
+    margin-top: 18px;
+  }
+
+  .galleryThumbnails {
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .galleryThumbnail {
+    flex: 0 0 86px;
+  }
+}
+
+@media (max-width: 420px) {
+  .vehicleHeroCopy h1 {
+    font-size: 2.65rem;
+  }
+
+  .vehicleActions {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicleActions .outlineButton {
+    grid-column: auto;
+  }
+
+  .vehicleMainImage img {
+    max-height: 315px;
+  }
+
+  .vehicleSpecs > div {
+    padding: 18px 16px;
+  }
+
+  .experienceTabs button {
+    padding: 10px 14px;
+    font-size: 0.86rem;
+  }
+}
+
+.vehicleWhatsappButton {
+  background: #ffffff;
+  border: 1.5px solid #25D366;
+  color: #25D366;
+  box-shadow: none;
+}
+
+.vehicleWhatsappButton:hover {
+  background: #f4fff8;
+  border-color: #20c85a;
+  color: #20c85a;
+  transform: translateY(-1px);
+}
+
+.vehicleWhatsappIcon {
+  color: #25D366;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.vehicleWhatsappButton:hover .vehicleWhatsappIcon {
+  color: #20c85a;
+}
+
+.vehicleActions .vehicleWhatsappButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1.5px solid #25D366;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #25D366;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.vehicleActions .vehicleWhatsappButton:hover {
+  background: #f4fff8;
+  color: #20c85a;
+  border-color: #20c85a;
+  transform: translateY(-1px);
+}
+
+.vehicleActions .vehicleWhatsappIcon {
+  color: #25D366;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+.vehicleActions .vehicleWhatsappButton:hover .vehicleWhatsappIcon {
+  color: #20c85a;
+}
+
+/* Test drive */
+
+.testDrivePage {
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+.testDriveSection {
+  padding: 96px 0 100px;
+}
+
+.testDriveGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.85fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.testDriveIntro h1 {
+  max-width: 610px;
+  margin: 14px 0 22px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 4.6vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.testDriveIntro > p {
+  max-width: 620px;
+  color: #667085;
+  line-height: 1.8;
+}
+
+.testDriveSteps {
+  display: grid;
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.testDriveSteps div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testDriveSteps strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #eef4ff;
+  color: #2563eb;
+}
+
+.testDriveSteps span {
+  font-weight: 700;
+}
+
+.testDriveFormCard {
+  padding: 34px;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.testDriveFormCard h2 {
+  margin: 0 0 26px;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+.testDriveForm {
+  display: grid;
+  gap: 18px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.testDriveSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 1.5px solid #25d366;
+  border-radius: 999px;
+  background: #fff;
+  color: #25d366;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.testDriveSubmit svg {
+  font-size: 1.4rem;
+}
+
+.testDriveSubmit:hover {
+  background: #f4fff8;
+}
+
+@media (max-width: 900px) {
+  .testDriveGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testDriveSection {
+    padding: 72px 0 70px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .testDriveFormCard {
+    padding: 26px 20px;
+  }
+}
+
+/* =========================================
+   TEST DRIVE FINAL POLISH
+   ========================================= */
+
+.testDriveIntro .sectionEyebrow {
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+
+
+.requiredMark {
+  color: #2563eb;
+}
+
+.testDriveVehicleCard {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  margin-top: 46px;
+  padding: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+}
+
+.testDriveVehicleCard img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 17px;
+}
+
+.testDriveVehicleCard span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.testDriveVehicleCard h2 {
+  margin: 0 0 7px;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+}
+
+.testDriveVehicleCard p {
+  margin: 0 0 10px;
+  color: #667085;
+  font-size: 0.88rem;
+}
+
+.testDriveVehicleCard strong {
+  font-size: 1.15rem;
+}
+
+.testDriveForm input[readonly] {
+  background: #f8fafc;
+  color: #475467;
+}
+
+@media (max-width: 640px) {
+  .testDriveIntro h1 {
+    font-size: 2.75rem;
+  }
+
+  .testDriveVehicleCard {
+    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .testDriveVehicleCard img {
+    height: 190px;
+  }
+}
+
+.vehicleActions .secondaryDarkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  line-height: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateY(1px);
+}
+
+
+
+/* Financing */
+
+.financingPage {
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+.financingSection {
+  padding: 96px 0 100px;
+}
+
+.financingGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.85fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.financingIntro .sectionEyebrow {
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.financingIntro h1 {
+  max-width: 610px;
+  margin: 14px 0 22px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 4.6vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.financingIntro > p {
+  max-width: 620px;
+  color: #667085;
+  line-height: 1.8;
+}
+
+.financingSteps {
+  display: grid;
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.financingSteps div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.financingSteps strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #eef4ff;
+  color: #2563eb;
+}
+
+.financingSteps span {
+  font-weight: 700;
+}
+
+.financingVehicleCard {
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  margin-top: 46px;
+  padding: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+}
+
+.financingVehicleCard img {
+  width: 100%;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 17px;
+}
+
+.financingVehicleCard span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.financingVehicleCard h2 {
+  margin: 0 0 7px;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+}
+
+.financingVehicleCard p {
+  margin: 0 0 10px;
+  color: #667085;
+  font-size: 0.88rem;
+}
+
+.financingVehicleCard strong {
+  font-size: 1.15rem;
+}
+
+.financingFormCard {
+  padding: 34px;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.financingFormCard h2 {
+  margin: 0 0 26px;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.financingForm {
+  display: grid;
+  gap: 18px;
+}
+
+.financingForm select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 14px;
+  background: #fff;
+  color: #101828;
+  font: inherit;
+  outline: none;
+}
+
+.financingForm input[readonly] {
+  background: #f8fafc;
+  color: #475467;
+}
+
+.financingSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 1.5px solid #25d366;
+  border-radius: 999px;
+  background: #fff;
+  color: #25d366;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.financingSubmit svg {
+  font-size: 1.4rem;
+}
+
+.financingSubmit:hover {
+  background: #f4fff8;
+  border-color: #20c85a;
+  color: #20c85a;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .financingGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .financingSection {
+    padding: 72px 0 70px;
+  }
+
+  .financingIntro h1 {
+    font-size: 2.75rem;
+  }
+
+  .financingVehicleCard {
+    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .financingVehicleCard img {
+    height: 190px;
+  }
+
+  .financingFormCard {
+    padding: 26px 20px;
+  }
+}
+
+/* =========================================
+   FINANCING FINAL POLISH
+   ========================================= */
+
+
+
+
+
+
+
+.financingForm .contactFormNote {
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+
+
+
+
+@media (max-width: 900px) {
+  .financingVehicleCard {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .financingVehicleCard {
+    grid-template-columns: 1fr;
+  }
+
+  .financingVehicleCard img {
+    height: 210px;
+  }
+
+  .financingFormCard h2 {
+    margin-bottom: 26px;
+  }
+
+  .financingSubmit {
+    width: 100%;
+  }
+}
+
+/* Premium financing button */
+
+.vehicleActions .outlineButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1.5px solid rgba(37, 99, 235, 0.28);
+  border-radius: 999px;
+  background: #f8fbff;
+  color: #172033;
+  font-weight: 750;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.06);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.vehicleActions .outlineButton:hover {
+  background: #eef4ff;
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
+}
+
+@media (max-width: 760px) {
+  .vehicleActions .outlineButton {
+    min-height: 48px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================
+   HERO VIDEO - FINAL
+   ========================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: none;
+  z-index: 0;
+  filter: brightness(0.88) contrast(1.04) saturate(0.96);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(4, 10, 22, 0.82) 0%,
+    rgba(4, 10, 22, 0.62) 30%,
+    rgba(4, 10, 22, 0.28) 58%,
+    rgba(4, 10, 22, 0.16) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 38%,
+    rgba(4, 10, 22, 0.18) 68%,
+    rgba(4, 10, 22, 0.5) 100%
+  );
+}
+
+/* Bottom-right cinematic shade */
+.hero::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32%;
+  height: 30%;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at bottom right,
+    rgba(3, 9, 20, 0.96) 0%,
+    rgba(3, 9, 20, 0.72) 28%,
+    rgba(3, 9, 20, 0.30) 55%,
+    rgba(3, 9, 20, 0) 78%
+  );
 }
