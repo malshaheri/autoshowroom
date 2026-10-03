@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AutoShowroom
 
-## Getting Started
+A premium, reusable automotive showroom demo built with Next.js, React and TypeScript.
 
-First, run the development server:
+**Live Demo:** https://autoshowroom-tan.vercel.app/de  
+**English Demo:** https://autoshowroom-tan.vercel.app/en
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+AutoShowroom is a portfolio and client-demo project for modern car dealerships. It combines a polished responsive interface with immersive vehicle presentation, bilingual content and practical customer enquiry flows.
+
+The current dealership details, contact information and inventory are demo data and can be customized for a real automotive business.
+
+## Features
+
+- Premium responsive showroom interface
+- German and English localization
+- Interactive 360° exterior vehicle viewer
+- Immersive 360° interior panorama powered by Three.js
+- Vehicle gallery with fullscreen viewing
+- Detailed vehicle specification pages
+- Test-drive request workflow
+- Financing enquiry workflow
+- Direct WhatsApp contact
+- Services and contact pages
+- Responsive mobile navigation
+- SEO metadata and Open Graph support
+- Custom AutoShowroom branding
+
+## 360° Vehicle Experience
+
+The Mercedes-Benz demo vehicle includes a 36-frame interactive exterior rotation with mouse and touch drag controls, plus an immersive interior panorama. The experience is integrated directly into the vehicle detail page.
+
+## Tech Stack
+
+- Next.js 16
+- React
+- TypeScript
+- Three.js
+- Tailwind CSS
+- React Icons
+- App Router
+- Next.js Font Optimization
+
+## Main Routes
+
+```text
+/de
+/en
+/[locale]/cars/[slug]
+/[locale]/services
+/[locale]/contact
+/[locale]/test-drive
+/[locale]/financing
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+git clone https://github.com/malshaheri/autoshowroom.git
+cd autoshowroom
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000 — the root route redirects to the German version.
 
-## Learn More
+For a production build:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Purpose
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project was created as a reusable automotive showroom concept for my professional developer portfolio. It demonstrates responsive frontend development, internationalization, interactive media experiences and practical dealership enquiry workflows.
 
-## Deploy on Vercel
+## Developer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Mohammed Alshaheri**  
+Full-Stack Developer · Ludwigshafen am Rhein, Germany
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Portfolio: https://malshaheri.de
+- GitHub: https://github.com/malshaheri
+- LinkedIn: https://www.linkedin.com/in/alshaheri/
+
+---
+
+Built with Next.js, TypeScript and Three.js.
