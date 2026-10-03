@@ -122,10 +122,6 @@ export default async function Home({ params }: PageProps) {
               <h2>{t.inventory.title}</h2>
               <p>{t.inventory.description}</p>
             </div>
-
-            <a className="viewAllLink" href="#">
-              {locale === "de" ? "Alle Fahrzeuge ansehen" : "View all cars"} →
-            </a>
           </div>
 
           <div className="carGrid">

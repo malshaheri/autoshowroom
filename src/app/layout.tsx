@@ -13,9 +13,30 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "AutoShowroom",
+  title: {
+    default: "AutoShowroom | Premium Automotive Experience",
+    template: "%s | AutoShowroom",
+  },
   description:
-    "A modern reusable automotive showroom demo with bilingual content and immersive 360° vehicle experiences.",
+    "Modern bilingual automotive showroom demo featuring interactive 360° exterior views, immersive interior panoramas, vehicle details, test drive requests and financing enquiries.",
+  applicationName: "AutoShowroom",
+  keywords: [
+    "AutoShowroom",
+    "automotive showroom",
+    "car dealership demo",
+    "360 car viewer",
+    "virtual showroom",
+    "Next.js",
+  ],
+  authors: [{ name: "Mohammed Alshaheri" }],
+  creator: "Mohammed Alshaheri",
+  openGraph: {
+    type: "website",
+    title: "AutoShowroom | Premium Automotive Experience",
+    description:
+      "Modern bilingual automotive showroom demo with interactive 360° vehicle experiences.",
+    siteName: "AutoShowroom",
+  },
 };
 
 export default function RootLayout({
