@@ -3443,3 +3443,23 @@ body {
     rgba(3, 9, 20, 0) 78%
   );
 }
+
+/* Mobile: fit all vehicle experience tabs on screen */
+@media (max-width: 600px) {
+  .experienceTabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    overflow: visible;
+  }
+
+  .experienceTabs button {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 5px;
+    font-size: 0.72rem;
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+  }
+}
