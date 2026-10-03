@@ -1,5 +1,4 @@
 export type Vehicle = {
-  exterior360?: string[];
   slug: string;
   name: string;
   price: string;
@@ -11,7 +10,17 @@ export type Vehicle = {
   color: string;
   image: string;
   gallery: string[];
+  exterior360?: string[];
+  interiorPanorama?: string;
 };
+
+const mercedesExterior360 = Array.from(
+  { length: 36 },
+  (_, index) =>
+    `/vehicles/mercedes-c-class/360/exterior/frame-${String(
+      index + 1,
+    ).padStart(2, "0")}.webp`,
+);
 
 export const vehicles: Vehicle[] = [
   {
@@ -24,18 +33,20 @@ export const vehicles: Vehicle[] = [
     fuel: "Petrol",
     power: "204 PS",
     color: "Graphite Grey",
-    image:
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1600&q=90",
-    exterior360: Array.from(
-      { length: 36 },
-      (_, index) =>
-        `/vehicles/mercedes-c-class/360/exterior/frame-${String(index + 1).padStart(2, "0")}.webp`,
-    ),
+    image: mercedesExterior360[0],
     gallery: [
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1600&q=90",
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1600&q=90",
-      "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1600&q=90",
+      mercedesExterior360[0],
+      mercedesExterior360[4],
+      mercedesExterior360[9],
+      mercedesExterior360[13],
+      mercedesExterior360[18],
+      mercedesExterior360[23],
+      mercedesExterior360[28],
+      mercedesExterior360[33],
     ],
+    exterior360: mercedesExterior360,
+    interiorPanorama:
+      "/vehicles/mercedes-c-class/360/interior/interior-panorama.png",
   },
   {
     slug: "bmw-3-series",
@@ -49,11 +60,6 @@ export const vehicles: Vehicle[] = [
     color: "Alpine White",
     image:
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=90",
-    exterior360: Array.from(
-      { length: 36 },
-      (_, index) =>
-        `/vehicles/mercedes-c-class/360/exterior/frame-${String(index + 1).padStart(2, "0")}.webp`,
-    ),
     gallery: [],
   },
   {
@@ -68,11 +74,6 @@ export const vehicles: Vehicle[] = [
     color: "Mythos Black",
     image:
       "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1600&q=90",
-    exterior360: Array.from(
-      { length: 36 },
-      (_, index) =>
-        `/vehicles/mercedes-c-class/360/exterior/frame-${String(index + 1).padStart(2, "0")}.webp`,
-    ),
     gallery: [],
   },
 ];

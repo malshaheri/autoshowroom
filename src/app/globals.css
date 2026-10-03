@@ -1648,3 +1648,280 @@ body {
   pointer-events: none;
   user-select: none;
 }
+
+.interior360Viewer {
+  width: 100%;
+  height: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #0b1425;
+}
+
+@media (max-width: 640px) {
+  .interior360Viewer {
+    height: 360px;
+    border-radius: 20px;
+  }
+}
+
+.vehicleGalleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.galleryCard {
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.galleryCard img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.galleryCard:hover img {
+  transform: scale(1.035);
+}
+
+.interiorPlaceholder {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: #0b1425;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .vehicleGalleryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryCard img {
+    height: 240px;
+  }
+}
+
+.premiumGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.premiumGalleryMain {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #0b1425;
+  box-shadow: var(--shadow);
+}
+
+.galleryImageButton {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.galleryImageButton img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryArrow {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(8, 17, 32, 0.6);
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.galleryArrowLeft {
+  left: 18px;
+}
+
+.galleryArrowRight {
+  right: 18px;
+}
+
+.galleryCounter {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(8, 17, 32, 0.6);
+  color: #fff;
+  font-size: 0.82rem;
+  backdrop-filter: blur(10px);
+}
+
+.galleryThumbnails {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.galleryThumbnail {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0.65;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.galleryThumbnail:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.galleryThumbnail.active {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.galleryThumbnail img {
+  width: 100%;
+  height: 82px;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryLightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 10, 20, 0.94);
+  backdrop-filter: blur(14px);
+}
+
+.galleryLightbox img {
+  max-width: min(92vw, 1400px);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.galleryClose {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.galleryLightboxArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.galleryLightboxArrowLeft {
+  left: 28px;
+}
+
+.galleryLightboxArrowRight {
+  right: 28px;
+}
+
+.galleryLightboxCounter {
+  position: absolute;
+  bottom: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .galleryThumbnails {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .galleryImageButton img {
+    height: 360px;
+  }
+
+  .galleryThumbnails {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .galleryThumbnail {
+    min-width: 92px;
+  }
+
+  .galleryThumbnail img {
+    height: 68px;
+  }
+
+  .galleryLightboxArrowLeft {
+    left: 10px;
+  }
+
+  .galleryLightboxArrowRight {
+    right: 10px;
+  }
+}
+
+.interior360Wrapper {
+  position: relative;
+}
+
+.interior360Error {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #fff1f2;
+  color: #b42318;
+  font-weight: 700;
+}
+
+.interior360Viewer {
+  width: 100%;
+  height: 520px;
+}

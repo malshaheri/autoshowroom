@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
-import { Vehicle360Viewer } from "@/components/Vehicle360Viewer";
+import { VehicleExperienceTabs } from "@/components/VehicleExperienceTabs";
 import {
   locales,
   translations,
@@ -125,12 +125,7 @@ export default async function VehiclePage({ params }: PageProps) {
             </div>
 
             <div className="vehicleMainImage">
-              <img src={vehicle.image} alt={vehicle.name}
-                hint={
-                  locale === "de"
-                    ? "Nach links oder rechts ziehen"
-                    : "Drag left or right"
-                } />
+              <img src={vehicle.image} alt={vehicle.name} />
             </div>
           </div>
 
@@ -176,46 +171,13 @@ export default async function VehiclePage({ params }: PageProps) {
             </div>
           </div>
 
-          <section className="vehicleExperience">
-            <div className="experienceTabs">
-              <button className="active" type="button">
-                {labels.gallery}
-              </button>
-
-              <button type="button">
-                {labels.exterior}
-              </button>
-
-              <button type="button">
-                {labels.interior}
-              </button>
-            </div>
-
-            <div className="experienceViewer">
-              <Vehicle360Viewer
-                images={vehicle.exterior360 ?? [vehicle.image]}
-                alt={vehicle.name}
-                hint={
-                  locale === "de"
-                    ? "Nach links oder rechts ziehen"
-                    : "Drag left or right"
-                }
-              />
-            </div>
-
-            {vehicle.gallery.length > 0 ? (
-              <div className="vehicleGallery">
-                {vehicle.gallery.map((image) => (
-                  <img key={image} src={image} alt={vehicle.name}
-                hint={
-                  locale === "de"
-                    ? "Nach links oder rechts ziehen"
-                    : "Drag left or right"
-                } />
-                ))}
-              </div>
-            ) : null}
-          </section>
+          <VehicleExperienceTabs
+            vehicleName={vehicle.name}
+            gallery={vehicle.gallery}
+            exterior360={vehicle.exterior360 ?? [vehicle.image]}
+            interiorPanorama={vehicle.interiorPanorama}
+            locale={locale}
+          />
         </div>
       </section>
     </main>
