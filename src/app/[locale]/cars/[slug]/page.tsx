@@ -1,0 +1,223 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Header } from "@/components/Header";
+import { Vehicle360Viewer } from "@/components/Vehicle360Viewer";
+import {
+  locales,
+  translations,
+  type Locale,
+} from "@/i18n/translations";
+import { getVehicleBySlug } from "@/data/vehicles";
+
+type PageProps = {
+  params: Promise<{
+    locale: string;
+    slug: string;
+  }>;
+};
+
+export default async function VehiclePage({ params }: PageProps) {
+  const { locale: rawLocale, slug } = await params;
+
+  if (!locales.includes(rawLocale as Locale)) {
+    notFound();
+  }
+
+  const locale = rawLocale as Locale;
+  const t = translations[locale];
+  const vehicle = getVehicleBySlug(slug);
+
+  const vehicleValues =
+    locale === "de"
+      ? {
+          automatic: "Automatik",
+          petrol: "Benzin",
+          diesel: "Diesel",
+          graphiteGrey: "Graphitgrau",
+          alpineWhite: "Alpinweiß",
+          mythosBlack: "Mythosschwarz",
+        }
+      : {
+          automatic: "Automatic",
+          petrol: "Petrol",
+          diesel: "Diesel",
+          graphiteGrey: "Graphite Grey",
+          alpineWhite: "Alpine White",
+          mythosBlack: "Mythos Black",
+        };
+
+  if (!vehicle) {
+    notFound();
+  }
+
+  const labels =
+    locale === "de"
+      ? {
+          back: "Zurück zu den Fahrzeugen",
+          overview: "Fahrzeugübersicht",
+          mileage: "Kilometerstand",
+          transmission: "Getriebe",
+          fuel: "Kraftstoff",
+          power: "Leistung",
+          color: "Farbe",
+          year: "Erstzulassung",
+          gallery: "Galerie",
+          exterior: "360° Außenansicht",
+          interior: "360° Innenraum",
+          testDrive: "Probefahrt anfragen",
+          financing: "Finanzierung anfragen",
+          whatsapp: "WhatsApp Anfrage",
+          description:
+            "Entdecke dieses Fahrzeug im Detail und erlebe es digital, bevor du den Showroom besuchst.",
+        }
+      : {
+          back: "Back to vehicles",
+          overview: "Vehicle Overview",
+          mileage: "Mileage",
+          transmission: "Transmission",
+          fuel: "Fuel",
+          power: "Power",
+          color: "Color",
+          year: "First Registration",
+          gallery: "Gallery",
+          exterior: "360° Exterior",
+          interior: "360° Interior",
+          testDrive: "Request Test Drive",
+          financing: "Ask About Financing",
+          whatsapp: "WhatsApp Inquiry",
+          description:
+            "Explore this vehicle in detail and experience it digitally before visiting the showroom.",
+        };
+
+  return (
+    <main>
+      <Header locale={locale} labels={t.nav} variant="light" />
+
+      <section className="vehiclePage">
+        <div className="container">
+          <Link className="vehicleBackLink" href={`/${locale}#inventory`}>
+            ← {labels.back}
+          </Link>
+
+          <div className="vehicleHero">
+            <div className="vehicleHeroCopy">
+              <span className="eyebrow">{labels.overview}</span>
+
+              <h1>{vehicle.name}</h1>
+
+              <p>{labels.description}</p>
+
+              <div className="vehiclePrice">{vehicle.price}</div>
+
+              <div className="vehicleActions">
+                <button className="primaryButton" type="button">
+                  {labels.whatsapp}
+                </button>
+
+                <button className="secondaryDarkButton" type="button">
+                  {labels.testDrive}
+                </button>
+
+                <button className="outlineButton" type="button">
+                  {labels.financing}
+                </button>
+              </div>
+            </div>
+
+            <div className="vehicleMainImage">
+              <img src={vehicle.image} alt={vehicle.name}
+                hint={
+                  locale === "de"
+                    ? "Nach links oder rechts ziehen"
+                    : "Drag left or right"
+                } />
+            </div>
+          </div>
+
+          <div className="vehicleSpecs">
+            <div>
+              <span>{labels.year}</span>
+              <strong>{vehicle.year}</strong>
+            </div>
+
+            <div>
+              <span>{labels.mileage}</span>
+              <strong>{vehicle.mileage}</strong>
+            </div>
+
+            <div>
+              <span>{labels.transmission}</span>
+              <strong>{vehicleValues.automatic}</strong>
+            </div>
+
+            <div>
+              <span>{labels.fuel}</span>
+              <strong>
+                {vehicle.fuel === "Diesel"
+                  ? vehicleValues.diesel
+                  : vehicleValues.petrol}
+              </strong>
+            </div>
+
+            <div>
+              <span>{labels.power}</span>
+              <strong>{vehicle.power}</strong>
+            </div>
+
+            <div>
+              <span>{labels.color}</span>
+              <strong>
+                {vehicle.color === "Alpine White"
+                  ? vehicleValues.alpineWhite
+                  : vehicle.color === "Mythos Black"
+                    ? vehicleValues.mythosBlack
+                    : vehicleValues.graphiteGrey}
+              </strong>
+            </div>
+          </div>
+
+          <section className="vehicleExperience">
+            <div className="experienceTabs">
+              <button className="active" type="button">
+                {labels.gallery}
+              </button>
+
+              <button type="button">
+                {labels.exterior}
+              </button>
+
+              <button type="button">
+                {labels.interior}
+              </button>
+            </div>
+
+            <div className="experienceViewer">
+              <Vehicle360Viewer
+                images={vehicle.exterior360 ?? [vehicle.image]}
+                alt={vehicle.name}
+                hint={
+                  locale === "de"
+                    ? "Nach links oder rechts ziehen"
+                    : "Drag left or right"
+                }
+              />
+            </div>
+
+            {vehicle.gallery.length > 0 ? (
+              <div className="vehicleGallery">
+                {vehicle.gallery.map((image) => (
+                  <img key={image} src={image} alt={vehicle.name}
+                hint={
+                  locale === "de"
+                    ? "Nach links oder rechts ziehen"
+                    : "Drag left or right"
+                } />
+                ))}
+              </div>
+            ) : null}
+          </section>
+        </div>
+      </section>
+    </main>
+  );
+}
